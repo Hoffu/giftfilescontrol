@@ -10,16 +10,32 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:giftfilescontrol.helloWorld"
+		"onView:vcs"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "giftfilescontrol.helloWorld",
-				"title": "Hello World"
+				"command": "giftfilescontrol.mergeFiles",
+				"title": "Merge open GIFT files"
+			},
+			{
+				"command": "giftfilescontrol.saveFile",
+				"title": "Save current file"
+			},
+			{
+				"command": "giftfilescontrol.switchVersion",
+				"title": "Switch file version"
 			}
-		]
+		],
+		"views": {
+			"explorer": [
+				{
+					"id": "vcs",
+					"name": "Version Control System"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
