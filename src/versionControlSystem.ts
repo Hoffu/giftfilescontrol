@@ -27,13 +27,16 @@ export class VCSTreeDataProvider implements vscode.TreeDataProvider<VersionTreeI
 
   updateData(files: string[]): void {
     this.data = [];
-    let count: number = 0;
+    const filesAndVersions = new Map<string, number>();
     files.map((file) => {
-        console.log(file);
-        const openPath = vscode.Uri.file(file);
-        vscode.workspace.openTextDocument(openPath).then(doc => {
-            this.data.push(new VersionTreeItem('Версия №' + ++count, [new VersionTreeItem(doc.fileName)]));
-        });
+      const splitted = file.replace(/[^0-9_]*/g, '').split('_');
+      const version = splitted[splitted.length - 1];
+      filesAndVersions.set(file, +version);
+    });
+    const sortedFiles = new Map([...filesAndVersions.entries()].sort((a, b) => a[1] - b[1]));
+    sortedFiles.forEach((version, path) => {
+      this.data.push(new VersionTreeItem('Версия №' + version, [new VersionTreeItem(path)]));
+      this.refresh();
     });
   }
 }
