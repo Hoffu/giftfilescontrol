@@ -1,6 +1,6 @@
 # giftfilescontrol README
 
-This is the README for your extension "giftfilescontrol". After writing up a brief description, we recommend including the following sections.
+Simple extension for version control of GIFT files.
 
 ## Features
 

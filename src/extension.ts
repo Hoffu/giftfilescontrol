@@ -8,36 +8,40 @@ let _lastVersion: number = 0;
 export function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "giftfilescontrol" is now active!');
 	
-	createStatusBarButton(() => {
+	const commandMergeFilesName = 'giftfilescontrol.mergeFiles';
+	const commandMergeFiles = vscode.commands.registerCommand(commandMergeFilesName, () => {
 		vscode.window.showInformationMessage(
-				"Do you really want to merge all opened files?",
-				...["Yes", "No"]
-			)
-			.then((answer) => {
-				if (answer === "Yes") {
-					const editor = vscode.window.activeTextEditor;
-					let newText: string = "";
-					vscode.workspace.textDocuments.map((openDoc) => {
-						if(openDoc.fileName.endsWith('.gift')) {
-							newText += openDoc.getText();
-							newText.trim();
-							newText += "\n";
-						}
-					});
-					if(editor && editor.document.fileName.endsWith('.gift')) {
-						editor.edit((editBuilder) => {
-							let firstLine = editor.document.lineAt(0);
-							let lastLine = editor.document.lineAt(editor.document.lineCount - 1);
-							let range = new vscode.Range(firstLine.range.start, lastLine.range.end);
-							editBuilder.replace(range, newText);
-						});
-						vscode.window.showInformationMessage('Files merged successfully.');
+			"Do you really want to merge all opened files?",
+			...["Yes", "No"]
+		)
+		.then((answer) => {
+			if (answer === "Yes") {
+				const editor = vscode.window.activeTextEditor;
+				let newText: string = "";
+				vscode.workspace.textDocuments.map((openDoc) => {
+					if(openDoc.fileName.endsWith('.gift')) {
+						newText += openDoc.getText();
+						newText.trim();
+						newText += "\n";
 					}
+				});
+				if(editor && editor.document.fileName.endsWith('.gift')) {
+					editor.edit((editBuilder) => {
+						let firstLine = editor.document.lineAt(0);
+						let lastLine = editor.document.lineAt(editor.document.lineCount - 1);
+						let range = new vscode.Range(firstLine.range.start, lastLine.range.end);
+						editBuilder.replace(range, newText);
+					});
+					vscode.window.showInformationMessage('Files merged successfully.');
 				}
-			});
-	}, 'giftfilescontrol.mergeFiles', `$(files) Merge open GIFT files`, 120, context);
+			}
+		});
+	});
+	context.subscriptions.push(commandMergeFiles);
+	createStatusBarButton(commandMergeFilesName, `$(files) Merge open GIFT files`, 120);
 
-	createStatusBarButton(() => {
+	const commandSaveVersionName = 'giftfilescontrol.saveFile';
+	const commandSaveVersion = vscode.commands.registerCommand(commandSaveVersionName, () => {
 		vscode.window.showInformationMessage(
 			"Do you really want to save opened file?",
 			...["Yes", "No"]
@@ -55,7 +59,9 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 		});
-	}, 'giftfilescontrol.saveFile', `$(clone) Save current version`, 130, context);
+	});
+	context.subscriptions.push(commandSaveVersion);
+	createStatusBarButton(commandSaveVersionName, `$(clone) Save current version`, 121);
 
 	const vcsTreeDataProvider = new VCSTreeDataProvider([]);
 	vscode.window.registerTreeDataProvider('vcs', vcsTreeDataProvider);
@@ -95,16 +101,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 export function deactivate() {}
 
-function createStatusBarButton(func: Function, name: string, text: string, priority: number, context: vscode.ExtensionContext): void {
-	const command = vscode.commands.registerCommand(name, () => {
-		func();
-	});
-	context.subscriptions.push(command);
+export function createStatusBarButton(name: string, text: string, priority: number): vscode.StatusBarItem {
 	const button = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, priority);
 	button.command = name;
 	button.text = text;
 	button.show();
-	context.subscriptions.push(button);
+	return button;
 }
 
 function updateTreeViewData(vcsTreeDataProvider: VCSTreeDataProvider): void {

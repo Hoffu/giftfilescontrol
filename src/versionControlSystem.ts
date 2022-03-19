@@ -36,8 +36,8 @@ export class VCSTreeDataProvider implements vscode.TreeDataProvider<VersionTreeI
     const sortedFiles = new Map([...filesAndVersions.entries()].sort((a, b) => a[1] - b[1]));
     sortedFiles.forEach((version, path) => {
       this.data.push(new VersionTreeItem('Версия №' + version, [new VersionTreeItem(path)]));
-      this.refresh();
     });
+    this.refresh();
   }
 }
 
@@ -49,7 +49,7 @@ export class VersionTreeItem extends vscode.TreeItem {
     "title": "Switch file version",
     "command": "giftfilescontrol.switchVersion",
     "arguments": [this]
-  }
+  };
 
   constructor(label: string, children?: VersionTreeItem[]) {
     super(
