@@ -36,4 +36,4 @@
 
 ### Скачать
 
-[Скачать](tsconfig.json)
+[Скачать](https://github.com/Hoffu/giftfilescontrol/raw/master/giftfilescontrol-0.0.1.vsix)
