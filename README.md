@@ -34,6 +34,6 @@
 
 Первый выпуск расширения GIFTFilesControl.
 
-### Скачать
+### Скачать расширение
 
 [Скачать](https://github.com/Hoffu/giftfilescontrol/raw/master/giftfilescontrol-0.0.1.vsix)
