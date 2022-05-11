@@ -1,4 +1,4 @@
-# GIFTFilesControl
+# GIFT files control
 
 Простое расширение для Visual Studio Code, упрощающее работу с файлами формата GIFT.
 
@@ -6,9 +6,9 @@
 
 По нажатию соответствующих кнопок сохраняется версия текущего файла и сливаются все открытые файлы формата GIFT. Переход к раннее сохраненой версии осуществляется путем выбора версии в древовидной структуре и нажатием на неё.
 
-![Open file](preview-images/merge-files.gif)
+![preview](https://user-images.githubusercontent.com/26046873/167868072-4aae48d7-0201-46b1-9973-ec518ec76ebc.gif)
 
-![Open file](preview-images/save-and-open-version-of-file.gif)
+![preview](https://user-images.githubusercontent.com/26046873/167868218-5312c118-d686-42b7-a9c6-00a7bcec53b3.gif)
 
 ## Требования
 
@@ -28,12 +28,8 @@
 
 ## Обратная связь
 
-Если у вас есть вопросы, проблемы, отчеты об ошибках и т. д., сообщите о проблеме в системе отслеживания проблем этого репозитория.
+Если у вас есть вопросы, проблемы, отчеты об ошибках и т. д., сообщите о проблеме в системе отслеживания проблем репозитория.
 
-### 1.0.0
+### 0.0.1
 
-Первый выпуск расширения GIFTFilesControl.
-
-### Скачать расширение
-
-[Скачать](https://github.com/Hoffu/giftfilescontrol/raw/master/giftfilescontrol-0.0.1.vsix)
+Первый выпуск расширения GIFT files control.

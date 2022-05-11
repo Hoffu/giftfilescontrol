@@ -1,12 +1,14 @@
 {
   "name": "giftfilescontrol",
-	"displayName": "giftFilesControl",
+	"displayName": "GIFT files control",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Hoffu/giftfilescontrol.git"
 	},
 	"description": "",
+	"icon": "images/gift-files-control-logo.png",
 	"version": "0.0.1",
+	"publisher": "Hoffu",
 	"engines": {
 		"vscode": "^1.64.0"
 	},
