@@ -5,7 +5,7 @@
 		"type": "git",
 		"url": "https://github.com/Hoffu/giftfilescontrol.git"
 	},
-	"description": "",
+	"description": "Extension for merging and versioning GIFT files",
 	"icon": "images/gift-files-control-logo.png",
 	"version": "0.0.1",
 	"publisher": "Hoffu",
